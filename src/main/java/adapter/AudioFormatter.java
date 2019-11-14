@@ -7,5 +7,9 @@ package adapter;
  * 
  */
 public interface AudioFormatter {
-    
+
+    /**
+     * Format audio file
+     */
+    public File format(File inputFile);
 }
