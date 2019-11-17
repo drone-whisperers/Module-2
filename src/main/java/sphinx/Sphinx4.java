@@ -19,7 +19,7 @@ public class Sphinx4 implements STTTool {
      * Default constructor. This uses default models for voice recognition
      */
     public Sphinx4() {
-        this("resource:/edu/cmu/sphinx/models/en-us/en-us", "resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict",
+        this("resource:/cmusphinx-en-us-8khz-5.2/cmusphinx-en-us-8khz-5.2", "resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict",
                 "resource:/edu/cmu/sphinx/models/en-us/en-us.lm.bin");
     }
 

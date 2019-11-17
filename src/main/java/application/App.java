@@ -19,6 +19,8 @@ public class App {
        System.out.println(sphinx.recognizeAudio(new FileInputStream(audioFile)));
        audioFile = new File(App.class.getClassLoader().getResource("sample-audio.wav").toURI());
        System.out.println(sphinx.recognizeAudio(new FileInputStream(audioFile)));
+       audioFile = new File(App.class.getClassLoader().getResource("thomas_audio.wav").toURI());
+       System.out.println(sphinx.recognizeAudio(new FileInputStream(audioFile)));
 
     }
 }
