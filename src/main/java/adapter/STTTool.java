@@ -11,8 +11,8 @@ public interface STTTool {
 
     /**
      * Transcribes audio file to text and returns it as a string
-     * @param fileStream Audio file to transcribe
+     * @param path path to audio file to transcribe
      * @return String recognition of audio
      */
-    public String recognizeAudio(FileInputStream fileStream);
+    public String recognizeAudio(String path);
 }
