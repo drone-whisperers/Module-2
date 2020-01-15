@@ -15,4 +15,9 @@ public interface STTTool {
      * @return String recognition of audio
      */
     public String recognizeAudio(String path);
+
+    /**
+     * @return returns processing time of last audio transcripted
+     */
+    public String lastProcessingDuration();
 }
