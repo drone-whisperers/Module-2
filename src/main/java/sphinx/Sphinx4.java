@@ -66,4 +66,8 @@ public class Sphinx4 implements STTTool {
         recognizer.stopRecognition();
         return result.trim();
     }
+
+    public String lastProcessDuration(){
+        return "not implemented";
+    }
 }

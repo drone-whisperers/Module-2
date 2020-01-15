@@ -19,5 +19,5 @@ public interface STTTool {
     /**
      * @return returns processing time of last audio transcripted
      */
-    public String lastProcessingDuration();
+    public String lastProcessDuration();
 }
