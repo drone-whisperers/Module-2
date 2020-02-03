@@ -70,4 +70,10 @@ public class Sphinx4 implements STTTool {
     public String lastProcessDuration(){
         return "not implemented";
     }
+
+    @Override
+    public String lastAudioDuration() {
+        // TODO Auto-generated method stub
+        return "not implemented";
+    }
 }

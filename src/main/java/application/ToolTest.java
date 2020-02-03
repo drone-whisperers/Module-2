@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 import adapter.STTTool;
@@ -38,6 +37,7 @@ public class ToolTest {
                 String theoretical = readOne(transcripts.get(filename + textExt));
                 result += "Expected text: " + theoretical + "\n";
                 result += "Actual text: " + actual + "\n";
+                result += "Tool processed "+tool.lastAudioDuration()+" file in "+tool.lastProcessDuration()+"\n";
                 result += "========================================================================\n";
             } else {
                 System.out.println(filename + " was null");

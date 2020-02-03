@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import adapter.STTTool;
+import shared.ProcessHelper;
 
 public class DeepSpeech implements STTTool {
     /* Path to model */
@@ -54,13 +55,13 @@ public class DeepSpeech implements STTTool {
         
         try {
             /** Create ProcessBuilder to run DeepSpeech command given parameters */
-            ProcessBuilder process = new ProcessBuilder("deepspeech", "--model", model, "--lm", lmodel, "--trie", trie,
-                    "--audio", path).redirectErrorStream(true);
+            ProcessHelper process = new ProcessHelper("deepspeech --model "+model+" --lm "+lmodel+" --trie "+trie+" --audio "+path);
             /** Start inference process and go through output  */
-            process.redirectErrorStream(true);
-            Process p = process.start();
+            process.start();
+
+
             
-            BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line = "";
 
             while ((line = br.readLine()) != null) {
@@ -97,7 +98,7 @@ public class DeepSpeech implements STTTool {
                 }
             }
             
-            int exitCode = p.waitFor();
+            int exitCode = process.exitCode();
             if(exitCode != 0) {
                 System.out.println("Process failed with code: "+exitCode);
             }
