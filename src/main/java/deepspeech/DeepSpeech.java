@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import adapter.STTTool;
+import shared.ProcessHelper;
 
 public class DeepSpeech implements STTTool {
     /* Path to model */
@@ -20,8 +21,8 @@ public class DeepSpeech implements STTTool {
     /* Last audio time */
     private String lastAudioDuration = "Process not run yet";
 
-    /** default constructor. This creates a DeepSpeech recognizer with main 
-     *
+    /** default constructor. This creates a DeepSpeech recognizer with models all in /mnt/c/DeepSpeech 
+     * using 0.6.1 models
      */
     public DeepSpeech() {
         this("/mnt/c/DeepSpeech", //deepspeech dir
@@ -50,13 +51,17 @@ public class DeepSpeech implements STTTool {
 
     @Override
     public String recognizeAudio(String path) {
+        System.out.println("DeepSpeech is currently processing audio file: "+path);
+        
         try {
             /** Create ProcessBuilder to run DeepSpeech command given parameters */
-            ProcessBuilder process = new ProcessBuilder("deepspeech", "--model", model, "--lm", lmodel, "--trie", trie,
-                    "--audio", path).redirectErrorStream(true);
+            ProcessHelper process = new ProcessHelper("deepspeech --model "+model+" --lm "+lmodel+" --trie "+trie+" --audio "+path);
             /** Start inference process and go through output  */
-            Process p = process.start();
-            BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            process.start();
+
+
+            
+            BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line = "";
 
             while ((line = br.readLine()) != null) {
@@ -93,7 +98,7 @@ public class DeepSpeech implements STTTool {
                 }
             }
             
-            int exitCode = p.waitFor();
+            int exitCode = process.exitCode();
             if(exitCode != 0) {
                 System.out.println("Process failed with code: "+exitCode);
             }

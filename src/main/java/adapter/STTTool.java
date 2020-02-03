@@ -20,4 +20,10 @@ public interface STTTool {
      * @return returns processing time of last audio transcripted
      */
     public String lastProcessDuration();
+
+    /***
+     * returns last recognized audio duration
+     * @return last audio duration
+     */
+    public String lastAudioDuration();
 }
