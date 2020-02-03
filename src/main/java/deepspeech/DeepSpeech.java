@@ -20,8 +20,8 @@ public class DeepSpeech implements STTTool {
     /* Last audio time */
     private String lastAudioDuration = "Process not run yet";
 
-    /** default constructor. This creates a DeepSpeech recognizer with main 
-     *
+    /** default constructor. This creates a DeepSpeech recognizer with models all in /mnt/c/DeepSpeech 
+     * using 0.6.1 models
      */
     public DeepSpeech() {
         this("/mnt/c/DeepSpeech", //deepspeech dir
@@ -50,12 +50,16 @@ public class DeepSpeech implements STTTool {
 
     @Override
     public String recognizeAudio(String path) {
+        System.out.println("DeepSpeech is currently processing audio file: "+path);
+        
         try {
             /** Create ProcessBuilder to run DeepSpeech command given parameters */
             ProcessBuilder process = new ProcessBuilder("deepspeech", "--model", model, "--lm", lmodel, "--trie", trie,
                     "--audio", path).redirectErrorStream(true);
             /** Start inference process and go through output  */
+            process.redirectErrorStream(true);
             Process p = process.start();
+            
             BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String line = "";
 
