@@ -19,7 +19,7 @@ public class Julius implements STTTool {
      */
     public Julius (){
         this("/mnt/c/julius",                       //Julius top level directory 
-                "julius/julius/julius",                    //Path to julius application
+                "julius/julius",                    //Path to julius application
                 "ENVR-v5.4.Dnn.Bin/julius.jconf",   //Configuration file path
                 "ENVR-v5.4.Dnn.Bin/dnn.jconf"
                 );
@@ -68,7 +68,7 @@ public class Julius implements STTTool {
                     lines.add(text);
                 }
             }
-            process.printErrorStream();
+
             if (lines.size() > 0){
                 String retStr = "";
 
@@ -79,7 +79,10 @@ public class Julius implements STTTool {
                 return retStr;
             }
             
-
+            int exitCode = process.exitCode();
+            if(exitCode != 0) {
+                System.out.println("Process failed with code: "+exitCode);
+            }
 
         } catch (Exception e) {
             System.out.println("Failed");
