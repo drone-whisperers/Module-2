@@ -1,5 +1,5 @@
--quiet
--input file
+-input file 
+-filelist test.dbl
 -htkconf wav_config
 -h ENVR-v5.3.am
 -hlist ENVR-v5.3.phn
@@ -27,4 +27,3 @@
 -sb 80
 -forcedict
 -cutsilence
--nolog
