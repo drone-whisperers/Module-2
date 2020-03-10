@@ -44,31 +44,30 @@ public class Julius implements STTTool {
         
         try {
             /** Create ProcessBuilder to run Julius command given parameters */
-            System.out.println("printf '" + path + "' | " + this.appdir + " -C " + this.configdir+" -dnnconf "+this.dnndir);
+            System.out.println( this.appdir + " -C " + this.configdir+" -dnnconf "+this.dnndir);
             ProcessHelper process = new ProcessHelper(this.appdir + " -C " + this.configdir+" -dnnconf "+this.dnndir);
             /** Start inference process and go through output  */
             process.start();
             
+            System.out.println(process.exitCode());
             
             
             BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
             
             ArrayList<String> lines = new ArrayList<String>();
             String line = "";
-
             while ((line = br.readLine()) != null) {
                 
                 /**
                  * Running inference. statement show right before the inference process and no extra lines are given until it is finished
                  * This will be used to parse inference text
                  */
-                System.out.println(line);
                 if (line.contains("sentence1")) {
                     String text = line.substring(line.indexOf("<s> "), line.indexOf("</s>"));
                     lines.add(text);
                 }
             }
-            process.printErrorStream();
+            
             if (lines.size() > 0){
                 String retStr = "";
 
@@ -79,13 +78,13 @@ public class Julius implements STTTool {
                 return retStr;
             }
             
-
+            int exitCode = process.exitCode();
+            if(exitCode != 0) throw new Exception();
 
         } catch (Exception e) {
             System.out.println("Failed");
             e.printStackTrace();
         }
-
         return "Audio recognition failed. Are paths correct?";
     }
 
