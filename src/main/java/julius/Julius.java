@@ -57,7 +57,7 @@ public class Julius implements STTTool {
             ArrayList<String> lines = new ArrayList<String>();
             String line = "";
             while ((line = br.readLine()) != null) {
-                
+                System.out.println(line);
                 /**
                  * Running inference. statement show right before the inference process and no extra lines are given until it is finished
                  * This will be used to parse inference text
@@ -66,6 +66,7 @@ public class Julius implements STTTool {
                     String text = line.substring(line.indexOf("<s> "), line.indexOf("</s>"));
                     lines.add(text);
                 }
+                if (line.contains("sentence1")) {}
             }
             
             if (lines.size() > 0){
@@ -77,6 +78,7 @@ public class Julius implements STTTool {
 
                 return retStr;
             }
+               
             
             int exitCode = process.exitCode();
             if(exitCode != 0) throw new Exception();
