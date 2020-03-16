@@ -19,7 +19,7 @@ public class Julius implements STTTool {
      */
     public Julius (){
         this("/mnt/c/julius",                       //Julius top level directory 
-                "julius/julius/julius",                    //Path to julius application
+                "julius/julius",                    //Path to julius application
                 "ENVR-v5.4.Dnn.Bin/julius.jconf",   //Configuration file path
                 "ENVR-v5.4.Dnn.Bin/dnn.jconf"
                 );
@@ -63,12 +63,14 @@ public class Julius implements STTTool {
                  * This will be used to parse inference text
                  */
                 if (line.contains("sentence1")) {
-                    String text = line.substring(line.indexOf("<s> "), line.indexOf("</s>"));
+                    String text = line.substring(line.indexOf("<s> ") + 4, line.indexOf("</s>"));
                     lines.add(text);
                 }
-                if (line.contains("sentence1")) {}
             }
             
+            int exitCode = process.exitCode();
+            if(exitCode != 0) throw new Exception();
+
             if (lines.size() > 0){
                 String retStr = "";
 
@@ -78,10 +80,6 @@ public class Julius implements STTTool {
 
                 return retStr;
             }
-               
-            
-            int exitCode = process.exitCode();
-            if(exitCode != 0) throw new Exception();
 
         } catch (Exception e) {
             System.out.println("Failed");
