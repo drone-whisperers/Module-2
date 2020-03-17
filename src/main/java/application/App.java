@@ -19,7 +19,12 @@ public class App {
     AudioInputSocket socket = new AudioInputSocket(audio_dir, server_port);
     socket.init();
     String filename, text;
-    STTTool deepspeech = new DeepSpeech();
+    STTTool deepspeech = new DeepSpeech("", //deepspeech dir
+    "deepspeech-0.6.1-models/output_graph.pbmm", // model
+    "deepspeech-0.6.1-models/lm.binary", // language model
+    "deepspeech-0.6.1-models/trie"// trie
+    );
+
     TextOutputSocket textOut = new TextOutputSocket(m3_server_host, m3_server_port);
     while(true){
         filename = socket.getNextFile();

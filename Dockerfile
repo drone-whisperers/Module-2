@@ -15,12 +15,6 @@ RUN wget https://github.com/mozilla/DeepSpeech/releases/download/v0.6.1/deepspee
    tar -zxvf deepspeech-0.6.1-models.tar.gz && \
    rm deepspeech-0.6.1-models.tar.gz 
 
-RUN pip install virtualenv
-
-
-RUN virtualenv -p python3 $HOME/tmp/deepspeech-venv/
-##RUN source $HOME/tmp/deepspeech-venv/bin/activate
-
 RUN pip install deepspeech
 
 RUN apt-get update && apt-get install -y maven
@@ -32,4 +26,4 @@ RUN mvn clean package
 
 RUN mkdir /tmp/module2_files
 
-CMD ["java", "-cp", "target/module-2-1.0-SNAPSHOT.jar", "application.App"]
+CMD ["java", "-cp", "target/classes", "application.App"]
