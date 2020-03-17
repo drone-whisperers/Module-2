@@ -57,6 +57,7 @@ public class ToolTest {
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line = br.readLine();
+            br.close();
             return line;
         } catch (FileNotFoundException e) {
 
