@@ -8,7 +8,7 @@ import java.nio.charset.Charset;
 public class TextOutputSocket {
 
     private int socket_port = 16669;
-    private String server = "127.0.0.1";
+    private String server = "module3";
 
     public TextOutputSocket() {
 

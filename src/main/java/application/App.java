@@ -13,7 +13,9 @@ public class App {
     private static int server_port = 16667;
     private static String audio_dir = "/tmp/module2_files";
     private static int m3_server_port = 16669;
-    private static String m3_server_host = "127.0.0.1";
+    private static String m3_server_host = "module3";
+    private static int m3_learning_server_port = 42069;
+    private static String m3_learning_server_host = "module3learning";
 
     public static void main(String[] args) throws URISyntaxException, FileNotFoundException {
     AudioInputSocket socket = new AudioInputSocket(audio_dir, server_port);
@@ -26,11 +28,13 @@ public class App {
     );
 
     TextOutputSocket textOut = new TextOutputSocket(m3_server_host, m3_server_port);
+    TextOutputSocket textOutLearning = new TextOutputSocket(m3_learning_server_host, m3_learning_server_port);
     while(true){
         filename = socket.getNextFile();
         text = deepspeech.recognizeAudio(filename);
         System.out.println("Processed text: "+text);
         textOut.sendText(text);
+        textOutLearning.sendText(text);
     }
 
     }

@@ -9,7 +9,7 @@ public class SimpleFileClient {
   public final static int SOCKET_PORT = 16667;      // you may change this
   public final static String SERVER = "127.0.0.1";  // localhost
   public final static String
-       FILE_TO_RECEIVED = "/Users/dvc/go/src/github.com/Module-2/src/main/resources/audio_files/thomas_audio.wav";  // you may change this, I give a
+       FILE_TO_RECEIVED = "/Users/dvc/go/src/github.com/MonoRepo/Module-2/src/main/resources/audio_files/actual_command.wav";  // you may change this, I give a
                                                             // different name because i don't want to
                                                             // overwrite the one used by server...
 
