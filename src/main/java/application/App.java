@@ -7,6 +7,7 @@ import adapter.AudioInputSocket;
 import adapter.STTTool;
 import adapter.TextOutputSocket;
 import deepspeech.DeepSpeech;
+import julius.Julius;
 
 
 public class App {
