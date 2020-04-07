@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
 
+import adapter.LevenstheinsD;
 import adapter.STTTool;
 import audio.Monitor;
 
@@ -38,6 +39,7 @@ public class ToolTest {
                 result += "Expected text: " + theoretical + "\n";
                 result += "Actual text: " + actual + "\n";
                 result += "Tool processed "+tool.lastAudioDuration()+" file in "+tool.lastProcessDuration()+"\n";
+                result += "Levensthein's Distance: "+LevenstheinsD.calculate(actual, theoretical);
                 result += "========================================================================\n";
             } else {
                 System.out.println(filename + " was null");
